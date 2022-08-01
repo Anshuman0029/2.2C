@@ -1,0 +1,23 @@
+// C++ code
+//
+
+int tempPin= A0;
+double value;
+double value_in_C;
+void setup()
+{
+  pinMode(tempPin, INPUT); //setting the pin as input
+  Serial.begin(9600);
+} 
+
+void loop()
+{
+   value = analogRead(tempPin);    //reading value from A0
+   value_in_C = (double)value / 1024; //getting percentage of input reading
+   value_in_C = value_in_C*5;     //multiplication by 5 for getting voltage
+   value_in_C = value_in_C -0.5;  //subtracted the offset
+   value_in_C = value_in_C*100;   //converting to degrees
+  
+   Serial.println(value_in_C);     //printing temperature value(Celcius degree)
+   delay(1000);
+}
